@@ -21,8 +21,6 @@ function SignIn() {
     }))
   }
 
-  console.log(formData)
-
   return (
     <>
     <div className='pageContainer'>
