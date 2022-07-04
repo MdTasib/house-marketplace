@@ -6,6 +6,8 @@ import SignUp from "./pages/Signup";
 import Profile from "./pages/Profile";
 import ForgetPassword from "./pages/ForgetPassword";
 import Navbar from "./components/Navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
@@ -19,6 +21,7 @@ function App() {
 				<Route path='/forget-password' element={<ForgetPassword />} />
 			</Routes>
 			<Navbar />
+			<ToastContainer />
 		</div>
 	);
 }
