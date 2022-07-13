@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
+import Category from "./pages/Category";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path='/sign-in' element={<SignIn />} />
 				<Route path='/sign-up' element={<SignUp />} />
 				<Route path='/forgot-password' element={<ForgetPassword />} />
+				<Route path='/category/:categoryName' element={<Category />} />
 			</Routes>
 			<Navbar />
 			<ToastContainer />
