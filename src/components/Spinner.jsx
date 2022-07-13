@@ -2,8 +2,8 @@ import React from 'react';
 
 function Spinner(props) {
   return (
-    <div>
-      Loading.....
+    <div className='loadingSpinnerContainer'>
+      <div className='loadingSpinner'></div>
     </div>
   );
 }
