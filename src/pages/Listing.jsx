@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase.config';
@@ -29,10 +29,74 @@ function Listing() {
     fetchListing();
   }, [params.listingId])
 
+  if(loading){
+    return <Spinner/>
+  }
+
+  const onShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setShareLinkCopied(true);
+    setTimeout(() => {
+      setShareLinkCopied(false);
+    }, 2000);
+  }
+
   return (
-    <div>
-      listing
-    </div>
+    <main>
+      <div className="shareIconDiv" onClick={onShare}>
+        <img src={shareIcon} alt="share" />
+      </div>
+
+      {shareLinkCopied && <p className="linkCopied">Link Copied!</p>}
+
+      <div className='listingDetails'>
+        <p className='listingName'>
+          {listing.name} - $
+          {listing.offer
+            ? listing.discountedPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+            : listing.regularPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        </p>
+        <p className='listingLocation'>{listing.address}</p>
+        <p className='listingType'>
+          For {listing.type === 'rent' ? 'Rent' : 'Sale'}
+        </p>
+        {listing.offer && (
+          <p className='discountPrice'>
+            ${listing.regularPrice - listing.discountedPrice} discount
+          </p>
+        )}
+
+        <ul className='listingDetailsList'>
+          <li>
+            {listing.bedrooms > 1
+              ? `${listing.bedrooms} Bedrooms`
+              : '1 Bedroom'}
+          </li>
+          <li>
+            {listing.bathrooms > 1
+              ? `${listing.bathrooms} Bathrooms`
+              : '1 Bathroom'}
+          </li>
+          <li>{listing.parking && 'Parking Spot'}</li>
+          <li>{listing.furnished && 'Furnished'}</li>
+        </ul>
+
+        <p className='listingLocationTitle'>Location</p>
+
+        {auth.currentUser?.uid !== listing.userRef && (
+          <Link
+            to={`/contact/${listing.userRef}?listingName=${listing.name}`}
+            className='primaryButton'
+          >
+            Contact Landlord
+          </Link>
+        )}
+      </div>
+    </main>
   );
 }
 
