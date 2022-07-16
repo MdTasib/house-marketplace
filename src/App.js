@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import PrivateRoute from "./components/PrivateRoute";
 import Category from "./pages/Category";
 import CreateListing from "./pages/CreateListing";
+import Listing from "./pages/Listing";
 
 function App() {
 	return (
@@ -26,6 +27,10 @@ function App() {
 				<Route path='/forgot-password' element={<ForgetPassword />} />
 				<Route path='/create-listing' element={<CreateListing />} />
 				<Route path='/category/:categoryName' element={<Category />} />
+				<Route
+					path='/category/:categoryName/:listingId'
+					element={<Listing />}
+				/>
 			</Routes>
 			<Navbar />
 			<ToastContainer />
