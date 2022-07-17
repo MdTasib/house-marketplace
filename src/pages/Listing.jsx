@@ -6,6 +6,8 @@ import { db } from '../firebase.config';
 import Spinner from '../components/Spinner';
 import shareIcon from '../assets/svg/shareIcon.svg';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 function Listing() {
   const [listing, setListing] = useState(null);
@@ -43,6 +45,17 @@ function Listing() {
 
   return (
     <main>
+       <Carousel>
+       {
+              listing.imageUrls.map((image, index) => (
+                <div style={{height: '70vh'}}>
+                  <img src={image} alt={index}/>
+                </div>
+              ))
+            }
+       </Carousel>
+      
+
       <div className="shareIconDiv" onClick={onShare}>
         <img src={shareIcon} alt="share" />
       </div>
