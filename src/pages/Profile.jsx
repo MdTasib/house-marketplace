@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import homeIcon from '../assets/svg/homeIcon.svg';
 import ListingItem from '../components/ListingItem';
-import { async } from "@firebase/util";
 
 
 function Profile() {
