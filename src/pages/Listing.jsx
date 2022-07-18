@@ -47,13 +47,18 @@ function Listing() {
     <main>
       <div className="carousel-wrapper">
         <Carousel infiniteLoop useKeyboardArrows autoPlay>
-        {
-                listing.imageUrls.map((image, index) => (
-                  <div style={{height: '70vh'}}>
-                    <img src={image} alt={index}/>
-                  </div>
-                ))
-              }
+          {
+            listing.imageUrls.map((image, index) => (
+              <div style={{
+                background: `url(${listing.imageUrls[index]}) center no-repeat`,
+                backgroundSize: 'cover',
+                height: '70vh'
+              }}
+              className='swiperSlideDiv'>
+                <img src={image} alt={index}/>
+              </div>
+            ))
+          }
         </Carousel>
        </div>
       
