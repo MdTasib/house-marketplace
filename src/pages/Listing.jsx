@@ -49,7 +49,7 @@ function Listing() {
         <Carousel infiniteLoop useKeyboardArrows autoPlay>
           {
             listing.imageUrls.map((image, index) => (
-              <div style={{
+              <div key={index} style={{
                 background: `url(${listing.imageUrls[index]}) center no-repeat`,
                 backgroundSize: 'cover',
                 height: '70vh'
